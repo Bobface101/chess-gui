@@ -1,3 +1,1 @@
-import pieces
-
-board_state = []
+board_state = ["hi"]

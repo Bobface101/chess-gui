@@ -129,6 +129,4 @@ def initialise_pieces():
                      [bpa, "a7"], [bpb, "b7"], [bpc, "c7"], [bpd, "d7"], [bpe, "e7"], [bpf, "f7"], [bpg, "g7"], [bph, "h7"],
                      [bn1, "b8"], [bn2, "g8"], [bb1, "c8"], [bb2, "f8"], [br1, "a8"], [br2, "h8"], [bq, "d8"], [bk, "e8"]]
     
-    print("I edited the board to be:" , board_state)
-    
     return board_state

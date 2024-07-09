@@ -3,13 +3,18 @@ from screen import screen
 
 tiles = []
 
-def initialise_board():
+# builds the window 
+def generate_screen(): 
+    screen.setup(width=900, height=900)
+    screen.tracer(0)
 
-    global tiles
+
+def initialise_board():
 
     # setting up the board
     
     screen.addshape('assets/board.gif')
+    screen.addshape('assets/highlight.gif')
     board = turtle.Turtle()
     board.shape('assets/board.gif')
 
@@ -35,6 +40,8 @@ def initialise_board():
 
 def initialise_tiles(): # now im adding a sprite to each tile so I can change it depending on the tile's state during a game e.g. selected by user
 
+    global tiles
+
     spots = ["a1", "b1", "c1", "d1", "e1", "f1", "g1", "h1", "a2", "b2", "c2", "d2", "e2", "f2", "g2", "h2",
             "a3", "b3", "c3", "d3", "e3", "f3", "g3", "h3", "a4", "b4", "c4", "d4", "e4", "f4", "g4", "h4",
             "a5", "b5", "c5", "d5", "e5", "f5", "g5", "h5", "a6", "b6", "c6", "d6", "e6", "f6", "g6", "h6",
@@ -44,7 +51,9 @@ def initialise_tiles(): # now im adding a sprite to each tile so I can change it
 
     for spot in spots:
         sprite = turtle.Turtle()
+        sprite.pu()
         sprite.ht()
+        sprite.goto(handlers.tiletocoord(spot))
         sprites.append(sprite)
     
     tiles = dict(zip(spots, sprites))
@@ -63,5 +72,3 @@ def draw_board(board_state):
         t.speed(0)
         t.pu()
         t.goto(handlers.tiletocoord(board_state[i][1]))
-
-

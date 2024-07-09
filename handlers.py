@@ -1,21 +1,21 @@
 import turtle
 from screen import screen
-from board_state import board_state
 
 # misc. functions which make everything run well
 
-# builds the window 
-def generate_screen(): 
-    screen.setup(width=900, height=900)
+def get_board_state():
 
+    from board_state import board_state
+    return board_state
+
+def send_board_state(new_state):
+
+    import board_state
+    board_state.board_state = new_state
 
 def find_piece_on(tile):
-
-    global board_state
-    # converts the board state into a dictionary and looks up the piece at the designated tile 
-    print(board_state)
     
-    board_state = dict([[pair[1], pair[0]] for pair in board_state])
+    board_state = dict([[pair[1], pair[0]] for pair in get_board_state()])
 
     try:
         return board_state[tile]
@@ -42,3 +42,4 @@ def roughcoordtotile(x,y):
     row = round((y+450)/100)
 
     return str(column)+str(row)
+
