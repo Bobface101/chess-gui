@@ -6,8 +6,9 @@ from screen import screen
 
 # set up the starting state of the board
 drawboard.generate_screen()
-drawboard.initialise_board()
 drawboard.initialise_tiles()
+drawboard.initialise_board()
+
 
 initial_state = pieces.initialise_pieces()
 handlers.send_board_state(initial_state)

@@ -2,6 +2,11 @@ import turtle
 from screen import screen
 
 # misc. functions which make everything run well
+def bring_turtle_to_front(tile):
+
+    board_state = get_board_state()
+    turtle = dict([[v,k] for [k,v] in board_state])[tile]
+    turtle.fd(0)
 
 def get_board_state():
 
