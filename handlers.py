@@ -5,8 +5,20 @@ from screen import screen
 def bring_turtle_to_front(tile):
 
     board_state = get_board_state()
-    turtle = dict([[v,k] for [k,v] in board_state])[tile]
-    turtle.fd(0)
+    board_dict = dict([[v,k] for [k,v] in board_state])
+    turtle = board_dict[tile] # find turtle to be brought to top
+    
+    newturtle = turtle.clone() # clones appear on the top layer of graphics
+    
+    board_dict[tile] = newturtle # replace old turtle with clone
+    del turtle
+
+    new_state = [[pair[1], pair[0]] for pair in board_dict.items()] # convert dict back to list
+
+    send_board_state(new_state) # update board state
+
+    
+
 
 def get_board_state():
 
@@ -27,6 +39,15 @@ def find_piece_on(tile):
     
     except:
         return None
+
+def find_tile_with(piece):
+    for pair in get_board_state():
+
+        if pair[0] == piece:
+            return pair[1]
+        else:
+            return None
+
 
 
 def tiletocoord(tilecoord):

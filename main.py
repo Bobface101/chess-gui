@@ -8,8 +8,6 @@ from screen import screen
 drawboard.generate_screen()
 drawboard.initialise_tiles()
 drawboard.initialise_board()
-
-
 initial_state = pieces.initialise_pieces()
 handlers.send_board_state(initial_state)
 drawboard.draw_board(board_state.board_state)

@@ -1,4 +1,4 @@
-import turtle, handlers
+import turtle, handlers, drawboard
 from screen import screen
 from board_state import board_state
 
@@ -130,3 +130,34 @@ def initialise_pieces():
                      [bn1, "b8"], [bn2, "g8"], [bb1, "c8"], [bb2, "f8"], [br1, "a8"], [br2, "h8"], [bq, "d8"], [bk, "e8"]]
     
     return board_state
+
+def capture(starting_piece, target_piece, tile):
+
+    # this function only updates the board state in memory, doesn't render the new state in graphics
+
+    # get board state 
+
+    board_state = handlers.get_board_state()
+
+    board_dict = dict([[pair[1],pair[0]] for pair in board_state])
+
+    # delete target piece, replace with placeholder
+
+    board_dict[tile] = "starting piece"
+
+    # remove starting piece from original tile
+
+    board_dict[handlers.find_tile_with(starting_piece)] = None
+
+    # replace placeholder starting piece
+
+    board_dict[tile] = starting_piece
+
+
+    # update board state
+
+    board_state = [[pair[1], pair[0]] for pair in board_dict.items()]
+
+    handlers.send_board_state(board_state)
+
+    
